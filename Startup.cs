@@ -23,9 +23,8 @@ namespace Vega
         public void ConfigureServices(IServiceCollection services)
         {
             //dps This is where we register our dependencies
+            services.AddDbContext<VegaDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<VegaDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings.Default"]));
-
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
